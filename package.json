@@ -1,0 +1,48 @@
+{
+  "name": "babel-plugin-i18n-with-toml",
+  "version": "0.1.0",
+  "description": "babel plugin for loading i18n with toml",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && jest"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gongzhxu/babel-plugin-i18n-with-toml.git"
+  },
+  "keywords": [
+    "babel-plugin",
+    "i18n",
+    "toml"
+  ],
+  "author": "gongzhxu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gongzhxu/babel-plugin-i18n-with-toml/issues"
+  },
+  "homepage": "https://github.com/gongzhxu/babel-plugin-i18n-with-toml#readme",
+  "dependencies": {
+    "i18n-js": "^3.9.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/register": "^7.21.0",
+    "@babel/types": "^7.21.5",
+    "@ltd/j-toml": "^1.38.0",
+    "@types/babel__core": "^7.20.0",
+    "@types/node": "^20.1.4",
+    "babel-preset-expo": "^9.3.2"
+  },
+  "peerDependencies": {
+    "i18n-js": "=3.9.2"
+  }
+}
