@@ -43,6 +43,7 @@
     "babel-preset-expo": "^9.3.2"
   },
   "peerDependencies": {
-    "i18n-js": "=3.9.2"
+    "i18n-js": "=3.9.2",
+    "@ltd/j-toml": ">=1.38.0"
   }
 }
