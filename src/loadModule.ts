@@ -3,7 +3,7 @@ import { Node } from '@babel/types'
 
 import { Options } from './plugin'
 
-export function loadModule(t: typeof BabelCoreNamespace.types, p: BabelCoreNamespace.NodePath<BabelCoreNamespace.types.ImportDeclaration>, state: BabelCoreNamespace.PluginPass, opts: Options, translations: Object) {
+export function loadModule(t: typeof BabelCoreNamespace.types, p: BabelCoreNamespace.NodePath<BabelCoreNamespace.types.ImportDeclaration>, state: BabelCoreNamespace.PluginPass, opts: Options, translations: any) {
     const nodes: Node[] = []
     nodes.push(t.variableDeclaration(
         'const',
