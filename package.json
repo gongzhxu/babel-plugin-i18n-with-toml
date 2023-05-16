@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-i18n-with-toml",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "babel plugin for loading i18n with toml",
   "main": "dist/index.js",
   "files": [
