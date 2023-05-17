@@ -84,7 +84,7 @@ const Plugin = function (api, options) {
         options.moduleName = '@i18n';
     }
     if (options.locale === undefined) {
-        options.locale = 'env';
+        options.locale = 'en';
     }
     if (options.fallbacks === undefined) {
         options.fallbacks = true;
@@ -93,15 +93,13 @@ const Plugin = function (api, options) {
     addDependencies(api, [options.configDir]);
     return {
         name: 'i18-with-toml',
-        pre(state) {
-            const translations = loadI18nDir(api, path_1.default.resolve(options.configDir));
-            // @ts-ignore 
-            this.translations = translations[path_1.default.basename(options.configDir)];
-        },
         visitor: {
             ImportDeclaration(p, state) {
+                const messages = loadI18nDir(api, path_1.default.resolve(options.configDir));
+                // @ts-ignore 
+                const translations = messages[path_1.default.basename(options.configDir)];
                 if (p.node.source.value === options.moduleName) {
-                    (0, loadModule_1.loadModule)(api.types, p, state, options, this.translations);
+                    (0, loadModule_1.loadModule)(api.types, p, state, options, translations);
                 }
             }
         },

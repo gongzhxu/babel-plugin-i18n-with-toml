@@ -30,7 +30,7 @@ function trackDependency(api: API, trackPath: string) {
   for (const source of sources) {
     if (isDirectory(source)) {
       const files = readdirSync(source, { recursive: true, encoding: 'utf-8' })
-      const subSources = []
+      const subSources: string[] = []
       for (let file of files) {
         subSources.push(path.join(source, file))
       }
@@ -99,7 +99,7 @@ export const Plugin = function (api: API, options: Options): PluginObj {
   }
 
   if (options.locale === undefined) {
-    options.locale = 'env'
+    options.locale = 'en'
   }
 
   if (options.fallbacks === undefined) {
@@ -111,15 +111,13 @@ export const Plugin = function (api: API, options: Options): PluginObj {
 
   return {
     name: 'i18-with-toml', 
-    pre(state) {
-      const translations = loadI18nDir(api, path.resolve(options.configDir))
-      // @ts-ignore 
-      this.translations = translations[path.basename(options.configDir)]      
-    },
     visitor: {
       ImportDeclaration(p, state) {
+        const messages = loadI18nDir(api, path.resolve(options.configDir))
+        // @ts-ignore 
+        const translations = messages[path.basename(options.configDir)]
         if (p.node.source.value === options.moduleName) {
-          loadModule(api.types, p, state, options, this.translations)
+          loadModule(api.types, p, state, options, translations)
         }
       }
     },
