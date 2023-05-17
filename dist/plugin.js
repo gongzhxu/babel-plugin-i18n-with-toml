@@ -25,6 +25,7 @@ function addDependencies(api, sources) {
             for (let file of files) {
                 subSources.push(path_1.default.join(source, file));
             }
+            trackDependency(api, source);
             addDependencies(api, subSources);
         }
         else {
@@ -95,10 +96,10 @@ const Plugin = function (api, options) {
         name: 'i18-with-toml',
         visitor: {
             ImportDeclaration(p, state) {
-                const messages = loadI18nDir(api, path_1.default.resolve(options.configDir));
-                // @ts-ignore 
-                const translations = messages[path_1.default.basename(options.configDir)];
                 if (p.node.source.value === options.moduleName) {
+                    const messages = loadI18nDir(api, path_1.default.resolve(options.configDir));
+                    // @ts-ignore 
+                    const translations = messages[path_1.default.basename(options.configDir)];
                     (0, loadModule_1.loadModule)(api.types, p, state, options, translations);
                 }
             }

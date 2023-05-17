@@ -35,6 +35,7 @@ function trackDependency(api: API, trackPath: string) {
         subSources.push(path.join(source, file))
       }
 
+      trackDependency(api, source)
       addDependencies(api, subSources)
     } else {
       if (source.endsWith('.toml')) {
@@ -113,10 +114,10 @@ export const Plugin = function (api: API, options: Options): PluginObj {
     name: 'i18-with-toml', 
     visitor: {
       ImportDeclaration(p, state) {
-        const messages = loadI18nDir(api, path.resolve(options.configDir))
-        // @ts-ignore 
-        const translations = messages[path.basename(options.configDir)]
         if (p.node.source.value === options.moduleName) {
+          const messages = loadI18nDir(api, path.resolve(options.configDir))
+          // @ts-ignore 
+          const translations = messages[path.basename(options.configDir)]
           loadModule(api.types, p, state, options, translations)
         }
       }
