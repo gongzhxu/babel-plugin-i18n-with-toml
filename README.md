@@ -11,7 +11,7 @@ use i18n-js(https://github.com/fnando/i18n-js/tree/v3.9.2)
 $ npm install babel-plugin-i18n-with-toml --save-dev
 ```
 
-Add the `react-native-dotenv` preset to your **.babelrc** file at the project root.
+Add the `i18n-with-toml` preset to your **.babelrc** file at the project root.
 
 ```javascript
 ['i18n-with-toml', {
@@ -47,7 +47,7 @@ import i18n from '@i18n';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start workin g on your app! {i18n.t('home.text')}.</Text>
+      <Text>Open up App.js to start working on your app! {i18n.t('home.text')}.</Text>
       <StatusBar style="auto" />
     </View>
   );
